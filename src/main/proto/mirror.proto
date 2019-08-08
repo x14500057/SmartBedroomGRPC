@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package smartWardrobe;
+
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "SmartMirror";
+option java_outer_classname = "mirrorProto";
+
+// The greeting service definition.
+//date and time
+    //Agenda
+    //topics of interest (news)
+    //traffic alerts
+
+
+
+service SmartMirror {
+    //power - Unary ()
+    rpc SwitchOnOff(google.protobuf.Empty) returns (PowerStatus) {}
+    rpc getAppointments (Day) returns (stream Appointment) {}
+    rpc getNewsUpdates (Topic) returns (stream NewsReport) {}
+}
+
+message PowerStatus{
+    bool status = 1;
+}
+
+message Day{
+    string day = 1;
+}
+
+message Appointment {
+    string title = 1;
+    string note = 2;
+    string time = 3;
+    string date = 4;    
+}
+
+message Topic {
+    string topic = 1;
+}
+
+message NewsReport {
+    string headline = 1;
+    string topic = 2;
+}
+
+    //service smartWardrobe{
+    //get inventory of clothes
+    //select outfit
+    //suggest outfit
+    //polish/shine shoes
+    //iron shirts
+
+
+

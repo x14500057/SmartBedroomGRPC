@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package SmartWardrobe;
+
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "SmartWardrobe";
+option java_outer_classname = "wardrobeAssistantProto";
+
+// The greeting service definition.
+service WardrobeAssistant {
+    rpc PowerOnOff (google.protobuf.Empty) returns (PowerStatus) {}
+    rpc getItem (ItemCoor) returns (stream RobotMovemts) {}
+    rpc getItemName (ItemCoor) returns (Item) {}
+    rpc showInventory (google.protobuf.Empty) returns (stream CItem) {}
+    rpc RecommendOutfit (weather) returns (Outfit) {}
+}
+
+
+
+message Item {
+    string type = 1;
+    string brand = 2;
+    string color = 3;
+    string size = 4;
+}
+
+
+message PowerStatus{
+    bool status = 1;
+}
+
+message ItemCoor {
+    int32 itemCoorX =1;
+    int32 itemCoorY = 2;
+}
+
+message RobotMovemts {
+    int32 curCoorX = 1;
+    int32 curCoorY = 2;
+    bool complete = 3;
+}
+
+message CItem {
+    string type = 1;
+    string brand = 2;
+    string color = 3;
+    string size = 4;
+}
+
+message Outfit {
+    string upperBody = 1;
+    string lowerBody = 2;
+    string footwear = 3;
+}
+
+
+message weather {
+    int32 temp = 1;
+    int32 rain = 2;
+}
